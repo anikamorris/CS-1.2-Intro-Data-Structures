@@ -10,7 +10,7 @@ def rearrange(sentence):
             new_words.append(split_words[rand_index])
             split_words.remove(split_words[rand_index])
     print(' '.join(new_words))
-#print new_words
+
 if __name__ == "__main__":
     sentence = ' '.join(sys.argv[1:])
     rearrange(sentence)
