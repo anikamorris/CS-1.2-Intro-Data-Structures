@@ -1,19 +1,21 @@
-from histogram import *
+from histogram import list_of_lists_histogram, file_or_string
 import random
 
+def get_total_weight(histogram):
+    total_weight = 0
+    for item in histogram:
+        total_weight += item[1]
+    return total_weight
 
 def random_word(histogram):
-    # gives uniform distribution
-    for i in range(len(histogram)):
-        frequency = histogram[i][1]
-        word = histogram[i][0]
-        if frequency > 1:
-            for i in range(1, frequency):
-                histogram.append([word, frequency])
-
-    random_num = random.randint(0, unique_words(histogram))
-    random_word = histogram[random_num][0]
-    return random_word
+    total_weight = get_total_weight(histogram)
+    random_weight = random.randint(0, total_weight)
+    print(str(random_weight) + " random weight")
+    for item in histogram:
+        random_weight = random_weight - item[1]
+        print(random_weight)
+        if random_weight <= 0:
+            return item[0]
 
 histogram = list_of_lists_histogram('poetry_snippet.txt')
 print(random_word(histogram))
