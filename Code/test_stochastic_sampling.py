@@ -1,11 +1,11 @@
 from histogram import list_of_lists_histogram, file_or_string
-from stochastic_sampling import get_total_weight, random_word
+from stochastic_sampling import get_total_weight, random_weighted_word
 import random
 
 def test_random_word():
     words = []
     for i in range(0, 10000):
-        rand_word = random_word(list_of_lists_histogram('poetry_snippet.txt'))
+        rand_word = random_weighted_word(list_of_lists_histogram('poetry_snippet.txt'))
         words.append(rand_word)
 
     histogram = []
@@ -18,6 +18,7 @@ def test_random_word():
 
         if is_in_histogram == False:
             histogram.append([word, 1])
-    print(histogram)
+    
+    for i in histogram:
+        print(i[0] + " " + str(i[1]/1000))
 
-test_random_word()
