@@ -5,8 +5,13 @@ import random
 
 app = Flask(__name__)
 
+
+
 @app.route('/')
 def show_phrase():
     histogram = list_of_lists_histogram('aristotlePoetry.txt')
     sentence = get_sentence(histogram)
     return render_template('index.html', sentence=sentence)
+
+if __name__ == "__main__":
+    app.run(debug=True, host='0.0.0.0')
